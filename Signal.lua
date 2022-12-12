@@ -1,3 +1,5 @@
+-- made by wrello
+
 local Connection = {}
 Connection.__index = Connection
 
