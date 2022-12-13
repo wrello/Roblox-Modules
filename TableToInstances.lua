@@ -1,6 +1,35 @@
 -- made by wrello, started 9/6/2021
 -- last updated 12/12/2022
 
+-- About
+--[[
+Turns a table into instances that when changed, updates the table.
+
+For example:
+
+local dataTable = {
+	_children = {
+		foo = {
+			_value = 0, -- Will automatically be of class "NumberValue"
+			_className = "IntValue", -- Will force foo to be of class "IntValue",
+			_name = "Foo", -- If '_name' is not provided, the instance's name will default to the key, i.e. "foo"
+
+			_children = {
+				bar = {} -- Will automatically register as a folder with the name "bar"
+			}
+		}
+	},
+
+	_ignore = true -- This will make sure the children of this tabel level will not be parented to a folder
+}
+
+TableToInstances(dataTable, player)
+
+player.foo.Value = 5
+
+print(dataTable._children.foo._value)
+]]
+
 local SUPPORTED_VALUE_TYPES = {"BoolValue", "StringValue", "NumberValue", "IntValue"}
 local UNSUPPORTED_VALUE_TYPE_ERROR = "cannot load or save %s with a value type of %s"
 
