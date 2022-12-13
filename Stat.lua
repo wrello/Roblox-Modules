@@ -2,7 +2,7 @@
 
 -- About
 --[[
-A module for easy smooth tweening stats.
+A module for easily modifiable smooth tweening stats.
 ]]
 
 type Config_TYPE = {
