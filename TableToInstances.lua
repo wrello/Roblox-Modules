@@ -20,7 +20,7 @@ local dataTable = {
 		}
 	},
 
-	_ignore = true -- This will make sure the children of this tabel level will not be parented to a folder, i.e. directly to the player
+	_ignore = true -- This will make sure the children of this tabel level will not be parented to a folder, i.e. parented directly to the player
 }
 
 TableToInstances(dataTable, player)
