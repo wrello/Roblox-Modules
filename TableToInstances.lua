@@ -3,7 +3,7 @@
 
 -- About
 --[[
-Turns a table into instances that when changed, updates the table.
+Turns a table into instances that when changed, update the table.
 
 For example:
 
