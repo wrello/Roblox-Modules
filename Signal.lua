@@ -1,5 +1,10 @@
 -- made by wrello
 
+-- About
+--[[
+Lightweight custom signal class
+]]
+
 local Connection = {}
 Connection.__index = Connection
 
