@@ -1,6 +1,6 @@
 -- made by wrello, started 1/7/2022
 -- last update 12/12/2022
--- v1.3.1
+-- v1.3.2
 
 --[[
 
@@ -99,7 +99,7 @@ local TS = game:GetService("TweenService")
 local objectInfo = {
 	{
 		checkMethod = "ClassName.find",
-		checkMethodInputs = { "Image[BL]" },
+		checkMethodInputs = { "Image[BL]", "ViewportFrame" },
 		transparencyProps = { "ImageTransparency" }
 	},
 
