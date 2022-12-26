@@ -1,6 +1,6 @@
 -- made by wrello, started 1/7/2022
--- last update 12/12/2022
--- v1.3.2
+-- last update 12/26/2022
+-- v1.3.3
 
 --[[
 
@@ -132,6 +132,12 @@ local objectInfo = {
 		checkMethodInputs = { "ScrollingFrame" },
 		transparencyProps = { "ScrollBarImageTransparency" }
 	},
+	
+	{
+		checkMethod = "IsA",
+		checkMethodInputs = { "CanvasGroup" },
+		transparencyProps = { "GroupTransparency" }
+	}
 }
 
 local function getTransparencyProps(object, goalTransparency)
@@ -208,21 +214,25 @@ function Terpy:_listenDescendantAddedRemoved()
 	end))
 
 	table.insert(self._conns, self._container.DescendantRemoving:Connect(function(obj)
-		self._originalTransparencies[obj] = nil
-		table.remove(self._terpyObjects, table.find(self._terpyObjects, obj))
+		local foundIndex = table.find(self._terpyObjects, obj)
+				
+		if foundIndex then
+			self._originalTransparencies[obj] = nil
+			table.remove(self._terpyObjects, foundIndex)
 
-		for i, tween in ipairs(self._tweens) do
-			if tween.Instance == obj then
-				if tween.PlaybackState == Enum.PlaybackState.Playing then
-					tween:Cancel()
+			for i, tween in ipairs(self._tweens) do
+				if tween.Instance == obj then
+					if tween.PlaybackState == Enum.PlaybackState.Playing then
+						tween:Cancel()
+					end
+
+					tween:Destroy()
+
+					table.remove(self._tweens, i)
+
+					break
 				end
-
-				tween:Destroy()
-
-				table.remove(self._tweens, i)
-
-				break
-			end
+			end		
 		end
 	end))
 end
