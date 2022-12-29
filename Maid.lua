@@ -1,7 +1,7 @@
 -- made by wrello
 
 --[[
-Lightweight custom Maid class
+Lightweight custom maid class
 ]]
 
 local Maid = {}
