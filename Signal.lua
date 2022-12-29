@@ -9,17 +9,18 @@ local Connection = {}
 Connection.__index = Connection
 
 function Connection.new(signal, handler)
-	return setmetatable({ _signal = signal, Handler = handler }, Connection)
+	return setmetatable({ _signal = signal, Handler = handler, Connected = true }, Connection)
 end
 
 function Connection:Disconnect()
+	self.Connected = false
 	table.remove(self._signal._connections, table.find(self._signal._connections, self))
 end
 
 local Signal = {}
 Signal.__index = Signal
 
-function Signal.new() : RBXScriptSignal
+function Signal.new(): RBXScriptSignal
 	return setmetatable({ _connections = {}, _waitingThreads = {} }, Signal)
 end
 
